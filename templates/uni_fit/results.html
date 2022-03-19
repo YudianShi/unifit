@@ -9,9 +9,10 @@
 <!--result page-->
 <div class="row">
 <!--picture of school-->
-  <div class="col-md-6">
+  <div class="col-md-6 col-md-offset-2">
       <div class="form-row text-center">
-          <img src="" alt="" class="" id=""><!--add the pictures of school-->
+        <!--add the pictures of school-->
+          ...
       </div>
 
   </div>
@@ -30,10 +31,11 @@
   <div class="col-md-6 col-md-offset-2">.
   <!--Show the comments-->
 <table class="table table-hover">
-  <div class="comment-area">
+
                     <h3 class="comment-area-title">Reviews</h3>
                     {% for comment in comments %}
                         <div>
+                        {{ comment.title }}
                             {{ comment.user.username }}
                             ({{ comment.comment_time|date:"Y-m-d H:n:s" }})：
                             {{ comment.text }}
@@ -41,63 +43,70 @@
                     {% empty %}
                         No comment yet
                     {% endfor %}
-                </div>
+
 </table>
-<a class="btn btn-default" href="#" role="button">Link</a>
+
   </div>
 </div>
     <!-- Button trigger modal -->
+    <div class="col-xs-offset-6">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Leave a review
 </button>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Leave a Review blow</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<!--pop up page-->
+<!--pop up page-->{{ user.username }}
           <!--select school-->
-          <select multiple class="form-control">
+
+          <div class="row">select school
+          <select class="form-control col-xs-offset-1">
               <option>1</option>
           </select>
-          <!--rate-->
-          <label class="review-liner">
-                        <div class="rate">
-                            {% for i in restaurant.rating|rjust:restaurant.rating %}
-                            <i class="fas fa-star"/></i>
-                            {% endfor %}
-                        </div>
-                    </label>
-
+          </div>
+         <!--title-->}
+          <div class="row">
+              <div class="col-xs-10 col-xs-offset-1">
+              title:<input id="comment_title" class="form-control" type="text" placeholder="-tiitle">
           <!--comment-->
+           <div class="row">
           <div class="col-xs-10 col-xs-offset-1">
                 <div class="comment-area">
-                    <h3 class="comment-area-title">add comment</h3>
-                        <form action="{% url 'update_comment' %}" method="POST" style="overflow:hidden">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <textarea id="comment_text" class="form-control" name="text" rows="4"></textarea>
-                            </div>
-
-                            <input type="hidden" name="object_id" value="{{ user.pk }}"><!--submit the form-->
-                            <input type="hidden" name="content_type" value="uni_fit">
-                            <input type="submit" value="Submit" class="btn btn-primary" style="float:right">
-                        </form>
+                    comment:
+                    <textarea id="comment_text" class="form-control" type="text" placeholder="add your comment"></textarea>
                 </div>
 
-          <!--end of pop up page-->
+            </div>
+               <!--rate-->
+          <div class="row">
+              <form class="rate-form" action="" method="POST" id="{{object.id}}">
+                  {% csrf_token %}
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <span class="fa fa-star" id="first"></span>
+              <span class="fa fa-star" id="second"></span>
+              <span class="fa fa-star" id="third"></span>
+              <span class="fa fa-star" id="fourth"></span>
+              <span class="fa fa-star" id="fifth"></span>
+
+          </div>
+           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+        <!--submit the review-->
+          <input type="submit" class="btn btn-secondary" data-bs-dismiss="modal" value="Submit">
+      </div><!--end of pop up page-->
     </div>
   </div>
+</div>
+</div>
 </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

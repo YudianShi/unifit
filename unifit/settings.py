@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'uni_fit',
     'registration',
+
     'unifit',
 ]
 
