@@ -9,7 +9,7 @@
 <!--result page-->
 <div class="row">
 <!--picture of school-->
-  <div class="col-md-6 col-md-offset-2">
+  <div class=" box col-xs-6 col-xs-offset-2">
       <div class="form-row text-center">
         <!--add the pictures of school-->
           ...
@@ -17,7 +17,7 @@
 
   </div>
     <!--details of school-->
-  <div class="col-md-10 col-md-offset-2">
+  <div class="bix col-xs-10 col-md-offset-2">
 
       <!--show the rate-->
 
@@ -69,19 +69,24 @@
 
           <div class="row">select school
           <select class="form-control col-xs-offset-1">
-              <option>1</option>
+              <option>{{ Univercity.UniName }}</option>
           </select>
           </div>
-         <!--title-->}
+         <!--title-->
           <div class="row">
               <div class="col-xs-10 col-xs-offset-1">
-              title:<input id="comment_title" class="form-control" type="text" placeholder="-tiitle">
+              title:<input id="comment_title" class="form-control" type="text" placeholder="add tiitle">
           <!--comment-->
            <div class="row">
           <div class="col-xs-10 col-xs-offset-1">
                 <div class="comment-area">
                     comment:
+                    <form action="{% url 'uni_fit:review' %}" method="POST" style="overflow:hidden">
+                            {% csrf_token %}
                     <textarea id="comment_text" class="form-control" type="text" placeholder="add your comment"></textarea>
+                    <input type="hidden" name="object_id" value="{{ University.pk }}">
+                    <input type="hidden" name="content_type" value="University">
+                    </form>
                 </div>
 
             </div>
@@ -90,14 +95,41 @@
               <form class="rate-form" action="" method="POST" id="{{object.id}}">
                   {% csrf_token %}
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-              <span class="fa fa-star" id="first"></span>
-              <span class="fa fa-star" id="second"></span>
-              <span class="fa fa-star" id="third"></span>
-              <span class="fa fa-star" id="fourth"></span>
-              <span class="fa fa-star" id="fifth"></span>
+              <button class="fa fa-star my-btn" id="first"></button>
+              <button class="fa fa-star my-btn" id="second"></button>
+              <button class="fa fa-star my-btn" id="third"></button>
+              <button class="fa fa-star my-btn" id="fourth"></button>
+              <button class="fa fa-star my-btn" id="fifth"></button>
 
+              </form>
+             <!-- <div>
+                  <form class="rate-form" action="" method="POST" id="">
+
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                  <label class="rate">
+                    <input type="radio" name="rate" value="1" id="first">
+                    <i class=" fa fa-star text-warning my-btn" /></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="rate" value="2" id="second">
+                    <i class=" fa fa-star text-warning my-btn" /></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="rate" value="3">
+                    <i class=" fa fa-star text-warning my-btn" id="third"/></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="rate" value="4">
+                    <i class=" fa fa-star text-warning my-btn" id="fourth"/></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="rate" value="5">
+                    <i class=" fa fa-star text-warning my-btn" id="fifth"/></i>
+                </label>
+                  </form>
+              </div>-->
           </div>
-           </div>
+
       </div>
       <div class="modal-footer">
         <!--submit the review-->

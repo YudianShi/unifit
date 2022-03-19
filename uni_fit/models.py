@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import CharField
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
@@ -76,15 +78,8 @@ class Review(models.Model):
     Comment = models.CharField(max_length=300)
     StudentSatisfaction = models.IntegerField
     EntryStandards = models.IntegerField
-    GraduateProspect = models.IntegerField  
+    GraduateProspect = models.IntegerField
 
-    class Meta:
-        verbose_name_plural = "Reviews"     
-
-    def __str__(self):
-        return self.text 
-
-class Rating(models.Model):
     image = models.ImageField(upload_to='images/')
     score = models.IntegerField(default=0,
                                 validators=[
@@ -92,6 +87,20 @@ class Rating(models.Model):
                                     MinValueValidator(0),
                                 ]
                                 )
+    class Meta:
+        verbose_name_plural = "Reviews"     
 
     def __str__(self):
-        return str(self.pk)
+        return self.text 
+
+#class Rating(models.Model):
+    #image = models.ImageField(upload_to='images/')
+    #score = models.IntegerField(default=0,
+      #                          validators=[
+       #                             MaxValueValidator(5),
+       #                             MinValueValidator(0),
+       #                         ]
+       #                         )
+
+    #def __str__(self):
+    #    return str(self.pk)

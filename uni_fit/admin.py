@@ -1,6 +1,5 @@
 from django.contrib import admin
 from uni_fit.models import UserProfile,InternalData, Review, University, University_Department, Users
-
 admin.site.register(UserProfile)
 admin.site.register(Users)
 admin.site.register(University)
